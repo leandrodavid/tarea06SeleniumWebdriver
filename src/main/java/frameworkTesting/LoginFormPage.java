@@ -8,6 +8,8 @@ public class LoginFormPage extends PageObject {
 
     private final String USERNAME = "standard_user";
     private final String PASSWORD = "secret_sauce";
+    private final String INVALIDUSERNAME = "invalid";
+    private final String INVALIDPASSWORD = "invalid";
 
     @FindBy(id = "user-name")
     private WebElement username;
@@ -17,6 +19,12 @@ public class LoginFormPage extends PageObject {
 
     @FindBy(id = "login-button")
     private WebElement login_button;
+
+    @FindBy(xpath = "//h3[@data-test= 'error']")
+    private WebElement error_message;
+
+    @FindBy(xpath = "//div[@class= 'login_password']/h4")
+    private WebElement passwordAllLabel;
 
     public LoginFormPage(WebDriver driver) {
         super(driver);
@@ -33,6 +41,14 @@ public class LoginFormPage extends PageObject {
         this.login_button.click();
     }
 
+    public String getErrorLoginMessage() {
+        return this.error_message.getText();
+    }
 
-
+    public void enterInvalidUserName(){
+        this.username.sendKeys(INVALIDUSERNAME);
+    }
+    public void enterInvalidPassword(){
+        this.password.sendKeys(INVALIDPASSWORD);
+    }
 }
