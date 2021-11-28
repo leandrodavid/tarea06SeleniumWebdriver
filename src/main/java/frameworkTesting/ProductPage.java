@@ -16,7 +16,11 @@ public class ProductPage extends PageObject {
     @FindBy(xpath = "//span[@class='shopping_cart_badge']")
     private WebElement cart_badge;
 
+    @FindBy(id = "react-burger-menu-btn")
+    private WebElement burger_menu;
 
+    @FindBy(id = "logout_sidebar_link")
+    private WebElement logout_link;
 
     public ProductPage(WebDriver driver) {
         super(driver);
@@ -34,5 +38,11 @@ public class ProductPage extends PageObject {
         return this.cart_badge.getText();
     }
 
+    public void pressMenuButton() {
+        this.burger_menu.click();
+    }
 
+    public void pressLogoutButton() {
+        this.logout_link.click();
+    }
 }

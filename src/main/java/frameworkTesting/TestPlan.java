@@ -31,6 +31,22 @@ public class TestPlan {
         Assert.assertEquals(productsPage.getTitle(),"PRODUCTS");
     }
 
+    @Test(testName = "Logout Successfully")
+    public static void logoutSuccessfully(){
+        driver.get(Utils.BASE_URL);
+        LoginFormPage loginFormPage = new LoginFormPage(driver);
+        loginFormPage.enterUserName();
+        loginFormPage.enterPassword();
+        loginFormPage.pressLoginButton();
+
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        ProductPage productsPage = new ProductPage(driver);
+        productsPage.pressMenuButton();
+        productsPage.pressLogoutButton();
+        Assert.assertTrue(loginFormPage.isLoginPage());
+    }
+
+
     @Test(testName = "Login with wrong credentials")
     public static void invalidLogin(){
         driver.get(Utils.BASE_URL);

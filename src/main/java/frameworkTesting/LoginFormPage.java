@@ -23,8 +23,6 @@ public class LoginFormPage extends PageObject {
     @FindBy(xpath = "//h3[@data-test= 'error']")
     private WebElement error_message;
 
-    @FindBy(xpath = "//div[@class= 'login_password']/h4")
-    private WebElement passwordAllLabel;
 
     public LoginFormPage(WebDriver driver) {
         super(driver);
@@ -50,5 +48,9 @@ public class LoginFormPage extends PageObject {
     }
     public void enterInvalidPassword(){
         this.password.sendKeys(INVALIDPASSWORD);
+    }
+
+    public  boolean isLoginPage() {
+        return this.login_button.isDisplayed();
     }
 }
